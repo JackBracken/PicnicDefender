@@ -26,21 +26,23 @@ public class Game extends StateBasedGame {
     }
     
 	public void initStatesList(GameContainer container) throws SlickException {
-		this.addState(new SplashScreen(SPLASHSCREEN));
-        this.addState(new MainMenu(MAINMENU));
-        this.addState(new Game(GAME));
-	}
+//		this.addState(new SplashScreen(SPLASHSCREEN));
+//        this.addState(new MainMenu(MAINMENU));
+//        this.addState(new Game(GAME));
+	}//		this.addState(new SplashScreen(SPLASHSCREEN));
+//  this.addState(new MainMenu(MAINMENU));
+//  this.addState(new Game(GAME));
 	
-	public static void main(String[] args) {
-		try {
-			AppGameContainer app = new AppGameContainer(new Game());
-			app.setDisplayMode(WIDTH, HEIGHT, false);
-			app.setTargetFrameRate(TARGET_FPS);
-			app.setShowFPS(false);
-			app.start();
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			AppGameContainer app = new AppGameContainer(new Game());
+//			app.setDisplayMode(WIDTH, HEIGHT, false);
+//			app.setTargetFrameRate(TARGET_FPS);
+//			app.setShowFPS(false);
+//			app.start();
+//		} catch (SlickException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 }

@@ -2,14 +2,14 @@ package me.jackbracken.picnic;
 
 import org.newdawn.slick.Animation;
 
-public class PlayerEntity extends Entity {
+public class FlyEntity extends Entity {
 
-	protected PlayerEntity(Animation animation, int x, int y) {
+	
+	protected FlyEntity(Animation animation, int x, int y) {
 		super(animation, x, y);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void collidedWith(Entity other) {
 		// TODO Auto-generated method stub
 		

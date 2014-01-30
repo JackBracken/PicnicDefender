@@ -8,6 +8,7 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class PicnicDefender extends BasicGame {
@@ -19,12 +20,23 @@ public class PicnicDefender extends BasicGame {
 	// Mouse coordinates
 	private float x, y;
 	
+	// Swatter rotation
+	private float rotation = 0.0f;
+	private boolean clockwise = true;
+	
 	// Interval for swatting
 	private int swatInterval = 1000;
 	
 	// Declare assets
 	private Image bgImage;
-	private Animation playerHand;
+	private Animation swatter, fly, wasp, ant;
+	
+	// Set entity properties
+	private int numberOfFlies = 4;
+	
+	// Declare Entities
+	private PlayerEntity pe;
+	private FlyEntity[] fe = new FlyEntity[numberOfFlies];
 	
 	public PicnicDefender() {
 		super("Picnic Defender");
@@ -48,32 +60,79 @@ public class PicnicDefender extends BasicGame {
 		
 		// Grab Mouse to hide cursor and steal focus
 		Mouse.setGrabbed(true);
+
+		// Initialize Image arrays for sprites
+		Image[] swatterSprite = { 
+				new Image("res/swatter.png") 
+		};
 		
-		// Initialise player's hand
-		Image[] playerSprite = { new Image("res/fly_normal.png"), new Image("res/fly_fly.png") };
-		int[] duration = {300, 300};
-		playerHand = new Animation(playerSprite, duration, false);
+		Image[] flySprite = {
+				new Image("res/fly_normal.png"), 
+				new Image("res/fly_fly.png") 
+//				new Image("res/fly_dead.png")
+		};
+		
+		// Initialise animations
+		swatter = new Animation(swatterSprite, 1, false);
+		fly = new Animation(flySprite, 300, false);
+		
+		// Initialize entities
+		fe[0] = new FlyEntity(fly, 100, 100);
+		fe[1] =	new FlyEntity(fly, 200, 300);
+		fe[2] =	new FlyEntity(fly, 300, 200);
+		fe[3] =	new FlyEntity(fly, 400, 350);
 		
 	}
 
 	@Override
-	public void update(GameContainer arg0, int arg1) throws SlickException {
-		// Animate player sprite
-		playerHand.update(20);
+	public void update(GameContainer gc, int delta) throws SlickException {
 		
 		if(Mouse.isButtonDown(0)) {
-			playerHand.update(100);
+			swingSwatter(delta);
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 			System.out.println("ESC PRESSED: QUITTING NOW");
 			System.exit(0);
 		}
+		
+		fly.update(10);
+	}
+	
+	private void swingSwatter(int delta) {
+		if(rotation <= 90.0f && clockwise) {
+			rotation += .6f * delta;
+		}
+		if(rotation >= 89.9f && clockwise) {
+			clockwise = false;
+		}
+		
+		if(rotation >= 0.0f && !clockwise) {
+			rotation -= .1f * delta;
+		}
+		if(rotation <= 0.1f && !clockwise) {
+			clockwise = true;
+		}
 	}
 	
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
+		Input input = container.getInput();
+		
+		x = input.getMouseX();
+		y = input.getMouseY();
+		
 		g.drawImage(bgImage, 0, 0, null);
-		playerHand.draw(Mouse.getX() - (playerHand.getWidth() / 2), HEIGHT - Mouse.getY() - (playerHand.getHeight() / 2));
+		
+		// rotation of swatter
+		g.pushTransform();
+		g.rotate(x + swatter.getWidth(), y + swatter.getHeight(), rotation);
+		g.drawAnimation(swatter, x, y);
+		g.popTransform();
+		
+		// draw fly
+		for(FlyEntity f: fe) {
+			f.draw();
+		}
 	}
 }

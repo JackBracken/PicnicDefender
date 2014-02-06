@@ -3,16 +3,18 @@ package me.jackbracken.picnic;
 import org.newdawn.slick.Animation;
 
 public class FlyEntity extends Entity {
-
 	
-	protected FlyEntity(Animation animation, int x, int y) {
+	private PicnicDefender game;
+	
+	protected FlyEntity(PicnicDefender game, Animation animation, int x, int y) {
 		super(animation, x, y);
-		// TODO Auto-generated constructor stub
+		this.game = game;
 	}
 
 	public void collidedWith(Entity other) {
-		// TODO Auto-generated method stub
-		
+		if(other instanceof PlayerEntity) {
+			game.destroyEntity(this);
+		}
 	}
 
 }

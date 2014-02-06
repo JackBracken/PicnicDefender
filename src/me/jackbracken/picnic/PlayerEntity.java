@@ -6,7 +6,6 @@ public class PlayerEntity extends Entity {
 
 	protected PlayerEntity(Animation animation, int x, int y) {
 		super(animation, x, y);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

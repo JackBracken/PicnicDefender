@@ -42,6 +42,10 @@ public class PicnicDefender extends BasicGame {
 		super("Picnic Defender");
 	}
 	
+	public void destroyEntity(Entity entity) {
+		
+	}
+	
 	public static void main(String[] args) {
 		try{
 			AppGameContainer app = new AppGameContainer(new PicnicDefender());
@@ -74,13 +78,13 @@ public class PicnicDefender extends BasicGame {
 		
 		// Initialise animations
 		swatter = new Animation(swatterSprite, 1, false);
-		fly = new Animation(flySprite, 300, false);
+		fly = new Animation(flySprite, 100, false);
 		
 		// Initialize entities
-		fe[0] = new FlyEntity(fly, 100, 100);
-		fe[1] =	new FlyEntity(fly, 200, 300);
-		fe[2] =	new FlyEntity(fly, 300, 200);
-		fe[3] =	new FlyEntity(fly, 400, 350);
+		fe[0] = new FlyEntity(this, fly, WIDTH + fly.getWidth(), 100);
+		fe[1] =	new FlyEntity(this, fly, WIDTH, 300);
+		fe[2] =	new FlyEntity(this, fly, WIDTH - fly.getWidth(), 200);
+		fe[3] =	new FlyEntity(this, fly, WIDTH + fly.getWidth() * 2, 350);
 		
 	}
 
@@ -97,6 +101,12 @@ public class PicnicDefender extends BasicGame {
 		}
 		
 		fly.update(10);
+		
+		for(int i = 0; i < fe.length; i++) {
+//			fe[i].setHorizontalVelocity(5);
+			fe[i].move(1);
+			fe[i].draw();
+		}
 	}
 	
 	private void swingSwatter(int delta) {
@@ -132,6 +142,8 @@ public class PicnicDefender extends BasicGame {
 		
 		// draw fly
 		for(FlyEntity f: fe) {
+			f.setHorizontalVelocity(-120);
+			f.move(10);
 			f.draw();
 		}
 	}

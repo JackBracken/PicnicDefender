@@ -1,12 +1,12 @@
 package me.jackbracken.picnic;
 
 
+import me.jackbracken.picnic.states.*;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
-import states.*;
 
 public class Picnic extends StateBasedGame {
 	// Game title

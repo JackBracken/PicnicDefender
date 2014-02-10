@@ -1,4 +1,4 @@
-package states;
+package me.jackbracken.picnic.states;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -6,10 +6,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class PauseMenu extends BasicGameState {
+public class MainMenu extends BasicGameState {
 	private int id;
 	
-	public PauseMenu(State state) {
+	public MainMenu(State state) {
 		id = state.getId();
 	}
 	

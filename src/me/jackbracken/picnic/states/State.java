@@ -1,4 +1,4 @@
-package states;
+package me.jackbracken.picnic.states;
 
 public enum State {
 	SplashScreen(0),

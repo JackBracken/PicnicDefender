@@ -1,4 +1,4 @@
-package me.jackbracken.picnic;
+package me.jackbracken.picnic.entity;
 
 import java.awt.Rectangle;
 

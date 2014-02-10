@@ -1,4 +1,5 @@
-package me.jackbracken.picnic;
+package me.jackbracken.picnic.entity;
+
 
 import org.newdawn.slick.Animation;
 

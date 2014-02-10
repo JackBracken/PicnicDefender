@@ -1,5 +1,7 @@
 package me.jackbracken.picnic.states;
 
+import me.jackbracken.picnic.entity.Entity;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -39,4 +41,12 @@ public class Game extends BasicGameState {
 		return id;
 	}
 
+	public void destroyEntity(Entity entity) {
+		
+	}
+	
+	public void spawnEntity(Entity entity) {
+		
+	}
+	
 }

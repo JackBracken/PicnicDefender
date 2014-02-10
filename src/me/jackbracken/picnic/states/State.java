@@ -2,10 +2,10 @@ package me.jackbracken.picnic.states;
 
 public enum State {
 	SplashScreen(0),
-	MainMenu(1),
-	Game(2),
-	PauseMenu(3),
-	EndGame(4);
+	Game(1),
+	PauseMenu(2),
+	EndGame(3),
+	Scoreboard(4);
 	
 	State(int id) {
 		this.id = id;

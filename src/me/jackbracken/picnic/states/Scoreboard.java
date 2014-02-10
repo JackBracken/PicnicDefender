@@ -6,13 +6,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Menu extends BasicGameState {
-	private int id;
-	
-	public Menu(State state) {
-		id = state.getId();
-	}
-	
+public class Scoreboard extends BasicGameState {
+
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
@@ -36,7 +31,8 @@ public class Menu extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return id;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

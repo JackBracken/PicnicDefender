@@ -1,12 +1,6 @@
 package me.jackbracken.picnic;
 
-import java.io.IOException;
-
-import static org.lwjgl.opengl.GL11.*;
-
 public class Sprite {
-	
-	private int width, height;
 	
 	public int getWidth() {
 		return 0;

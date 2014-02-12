@@ -69,8 +69,8 @@ public class SplashScreen extends BasicGameState {
 		hOffset = -backgroundWidth + gc.getWidth();
 
 		Image[] flySprite = { 
-				new Image("res/sprites/fly_normal.png"),
-				new Image("res/sprites/fly_fly.png") 
+				new Image("res/sprites/wasp_normal.png"),
+				new Image("res/sprites/wasp_fly.png") 
 		};
 
 		fly = new Animation(flySprite, 100, false);

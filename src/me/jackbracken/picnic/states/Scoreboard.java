@@ -8,6 +8,10 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Scoreboard extends BasicGameState {
 
+	public Scoreboard(State state) {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {

@@ -1,10 +1,15 @@
 package me.jackbracken.picnic;
 
 
-import me.jackbracken.picnic.states.*;
+import me.jackbracken.picnic.states.EndGame;
+import me.jackbracken.picnic.states.Game;
+import me.jackbracken.picnic.states.PauseMenu;
+import me.jackbracken.picnic.states.SplashScreen;
+import me.jackbracken.picnic.states.State;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -23,7 +28,8 @@ public class Picnic extends StateBasedGame {
     public Picnic() {
     	super(TITLE);
     }
-	public void initStatesList(GameContainer container) throws SlickException {
+    
+    public void initStatesList(GameContainer container) throws SlickException {
     	addState(new SplashScreen(State.SplashScreen));
     	addState(new Game(State.Game));
     	addState(new Game(State.Scoreboard));
@@ -36,6 +42,9 @@ public class Picnic extends StateBasedGame {
 			AppGameContainer container = new AppGameContainer(new Picnic());
 			container.setDisplayMode(WIDTH, HEIGHT, false);
 			container.setTargetFrameRate(TARGET_FPS);
+			Music backgroundMusic = new Music("res/audio/music.ogg");
+			backgroundMusic.play();
+			backgroundMusic.loop();
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

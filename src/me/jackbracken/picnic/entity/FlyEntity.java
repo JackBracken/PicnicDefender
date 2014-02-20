@@ -1,5 +1,7 @@
 package me.jackbracken.picnic.entity;
 
+import java.util.Random;
+
 import me.jackbracken.picnic.states.Game;
 
 import org.newdawn.slick.Animation;
@@ -7,9 +9,10 @@ import org.newdawn.slick.Animation;
 public class FlyEntity extends Entity {
 	
 	private Game game;
+	Random r = new Random();
 	
-	protected FlyEntity(Game game, Animation animation, int x, int y) {
-		super(animation, x, y);
+	public FlyEntity(Game game, Animation animation) {
+		super(animation, 0, 0);
 		this.game = game;
 	}
 

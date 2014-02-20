@@ -8,8 +8,8 @@ public class WaspEntity extends Entity {
 
 	private Game game;
 	
-	protected WaspEntity(Game game, Animation animation, int x, int y) {
-		super(animation, x, y);
+	public WaspEntity(Game game, Animation animation) {
+		super(animation, 0, 0);
 		this.game = game;
 	}
 

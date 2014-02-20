@@ -24,7 +24,7 @@ public class SplashScreen extends BasicGameState {
 	private String title = "Picnic Defender";
 	
 	// Assets
-	private Image bg1, bg2;
+	private Image backgroundImage;
 	private Animation fly;
 	private TrueTypeFont menuTitle, menuItems;
 	private int backgroundWidth, hOffset;
@@ -63,9 +63,9 @@ public class SplashScreen extends BasicGameState {
 		menuReadyTime = 3000;
 
 		// Initialize background image (need 2 for horizontal repeat)
-		bg1 = new Image("res/menu/bg.png");
-		bg2 = new Image("res/menu/bg.png");
-		backgroundWidth = bg1.getWidth();
+		backgroundImage = new Image("res/menu/bg.png");
+
+		backgroundWidth = backgroundImage.getWidth();
 		hOffset = -backgroundWidth + gc.getWidth();
 
 		Image[] flySprite = { 
@@ -91,8 +91,8 @@ public class SplashScreen extends BasicGameState {
 			hOffset = -backgroundWidth + gc.getWidth();
 		}
 
-		bg1.draw(hOffset, 0);
-		bg2.draw(hOffset - backgroundWidth, 0);
+		backgroundImage.draw(hOffset, 0);
+		backgroundImage.draw(hOffset - backgroundWidth, 0);
 
 		menuTitle.drawString(centerText(gc, menuTitle, title), 200, title,
 				Color.darkGray);

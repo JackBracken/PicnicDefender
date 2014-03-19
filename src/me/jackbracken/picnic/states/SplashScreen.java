@@ -69,9 +69,11 @@ public class SplashScreen extends BasicGameState {
 		hOffset = -backgroundWidth + gc.getWidth();
 
 		Image[] flySprite = { 
-				new Image("res/sprites/fly_normal.png"),
-				new Image("res/sprites/fly_fly.png") 
+				new Image("res/sprites/bee_1.png"),
+				new Image("res/sprites/bee_2.png") 
 		};
+		
+		
 
 		fly = new Animation(flySprite, 100, false);
 		
@@ -104,6 +106,8 @@ public class SplashScreen extends BasicGameState {
 						menuItemOffset + 40 * i, menuLabels[i], Color.darkGray);
 			}
 
+			
+			
 			fly.draw(
 					centerText(gc, menuItems, menuLabels[currentOption])
 					- fly.getWidth(), menuItemOffset + 40 * currentOption

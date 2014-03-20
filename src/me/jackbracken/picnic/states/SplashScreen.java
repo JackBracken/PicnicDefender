@@ -25,7 +25,7 @@ public class SplashScreen extends BasicGameState {
 	
 	// Assets
 	private Image backgroundImage;
-	private Animation fly;
+	private Animation bee;
 	private TrueTypeFont menuTitle, menuItems;
 	private int backgroundWidth, hOffset;
 	
@@ -68,14 +68,14 @@ public class SplashScreen extends BasicGameState {
 		backgroundWidth = backgroundImage.getWidth();
 		hOffset = -backgroundWidth + gc.getWidth();
 
-		Image[] flySprite = { 
+		Image[] beeSprite = { 
 				new Image("res/sprites/bee_1.png"),
 				new Image("res/sprites/bee_2.png") 
 		};
 		
 		
 
-		fly = new Animation(flySprite, 100, false);
+		bee = new Animation(beeSprite, 100, false);
 		
 		menuTitle = new TrueTypeFont(new Font("Verdana", Font.BOLD, 42), true);
 		menuItems = new TrueTypeFont(new Font("Verdana", Font.BOLD, 26), true);
@@ -108,9 +108,9 @@ public class SplashScreen extends BasicGameState {
 
 			
 			
-			fly.draw(
+			bee.draw(
 					centerText(gc, menuItems, menuLabels[currentOption])
-					- fly.getWidth(), menuItemOffset + 40 * currentOption
+					- bee.getWidth(), menuItemOffset + 20 * currentOption
 			);
 
 		}
@@ -170,7 +170,7 @@ public class SplashScreen extends BasicGameState {
 		if (menuReady(delta) && !menuVisible) {
 			menuVisible = true;
 		}
-		fly.update(12);
+		bee.update(12);
 	}
 
 	@Override

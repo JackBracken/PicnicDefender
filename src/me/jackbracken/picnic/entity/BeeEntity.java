@@ -4,11 +4,11 @@ import me.jackbracken.picnic.states.Game;
 
 import org.newdawn.slick.Animation;
 
-public class WaspEntity extends Entity {
+public class BeeEntity extends Entity {
 
 	private Game game;
 	
-	public WaspEntity(Game game, Animation animation) {
+	public BeeEntity(Game game, Animation animation) {
 		super(animation, 0, 0);
 		this.game = game;
 	}

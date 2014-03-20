@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import me.jackbracken.picnic.entity.Entity;
 import me.jackbracken.picnic.entity.FlyEntity;
-import me.jackbracken.picnic.entity.WaspEntity;
+import me.jackbracken.picnic.entity.BeeEntity;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
@@ -17,10 +17,10 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Game extends BasicGameState {
 	private int id;
 	private Image bg;
-	private Animation flyAnimation, waspAnimation;
+	private Animation flyAnimation, beeAnimation;
 	private Entity entity;
 	private FlyEntity fly;
-	private WaspEntity wasp;
+	private BeeEntity bee;
 	
 	private ArrayList<Entity> mobs;
 	
@@ -37,19 +37,19 @@ public class Game extends BasicGameState {
 		// Initialize sprites
 		
 		Image[] flySprite = { 
-			new Image("res/sprites/fly_normal.png"),
-			new Image("res/sprites/fly_fly.png") 
+			new Image("res/sprites/fly_1.png"),
+			new Image("res/sprites/fly_2.png") 
 		};
 		
-		Image[] waspSprite = {
-			new Image("res/sprites/wasp_normal.png"),
-			new Image("res/sprites/wasp_fly.png")
+		Image[] beeSprite = {
+			new Image("res/sprites/bee_1.png"),
+			new Image("res/sprites/bee_2.png")
 		};
 		
 		// Initialize animations
 		
 		flyAnimation = new Animation(flySprite, 100, false);
-		waspAnimation = new Animation(waspSprite, 100, false);
+		beeAnimation = new Animation(beeSprite, 100, false);
 		
 	}
 
@@ -72,25 +72,21 @@ public class Game extends BasicGameState {
 	}
 	
 	public void spawnFly(FlyEntity fly) {
-		this.fly = fly;
 		fly = new FlyEntity(this, flyAnimation);
 		spawnEntity(fly);
 	}
 	
-	public void spawnWasp(WaspEntity wasp) {
-		this.wasp = wasp;
-		wasp = new WaspEntity(this, waspAnimation);
-		spawnEntity(wasp);
+	public void spawnBee(BeeEntity bee) {
+		bee = new BeeEntity(this, beeAnimation);
+		spawnEntity(bee);
 	}
 	
-	public void spawnEntity(Entity entity) {
-		this.entity = entity;
-		mobs.add(entity);
+	public void spawnEntity(Entity e) {
+		mobs.add(e);
 	}
 	
-	public void destroyEntity(Entity entity) {
-		this.entity = entity;
-		mobs.remove(entity);
+	public void destroyEntity(Entity e) {
+		mobs.remove(e);
 	}
 	
 }

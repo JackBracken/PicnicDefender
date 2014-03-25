@@ -108,9 +108,9 @@ public class SplashScreen extends BasicGameState {
 
 			
 			
-			bee.draw(
-					centerText(gc, menuItems, menuLabels[currentOption])
-					- bee.getWidth(), menuItemOffset + 20 * currentOption
+			bee.draw(	
+				centerText(gc, menuItems, menuLabels[currentOption])
+					- bee.getWidth() - 20, (menuItemOffset - 20) + (42 * currentOption) 
 			);
 
 		}

@@ -2,10 +2,12 @@ package me.jackbracken.picnic.states;
 
 import java.util.ArrayList;
 
+import me.jackbracken.picnic.entity.BeeEntity;
 import me.jackbracken.picnic.entity.Entity;
 import me.jackbracken.picnic.entity.FlyEntity;
-import me.jackbracken.picnic.entity.BeeEntity;
+import me.jackbracken.picnic.entity.PlayerEntity;
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -15,12 +17,13 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Game extends BasicGameState {
-	private int id;
-	private Image bg;
-	private Animation flyAnimation, beeAnimation;
+	private int id, xPos, yPos;
+	private Image bg, swatter;
+	private Animation flyAnimation, beeAnimation, playerAnimation;
 	private Entity entity;
 	private FlyEntity fly;
 	private BeeEntity bee;
+	private PlayerEntity player;
 	
 	private ArrayList<Entity> mobs;
 	
@@ -46,24 +49,42 @@ public class Game extends BasicGameState {
 			new Image("res/sprites/bee_2.png")
 		};
 		
+		Image[] playerSprite = {
+			new Image("res/sprites/swatter.png")
+		};
+		
 		// Initialize animations
 		
 		flyAnimation = new Animation(flySprite, 100, false);
 		beeAnimation = new Animation(beeSprite, 100, false);
+		playerAnimation = new Animation(playerSprite, 100, false);
 		
+		fly = new FlyEntity(this, flyAnimation);
+		player = new PlayerEntity(this, playerAnimation);
+		
+		// Initialize mouse 
+		
+		xPos = Mouse.getX();
+		yPos = gc.getHeight() - Mouse.getY();
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		g.drawImage(bg, 0, 0);
+		player.render(xPos, yPos);
+		
+		fly.render();
+//		flyAnimation.draw(500, 300);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		xPos = Mouse.getX();
+		yPos = gc.getHeight() - Mouse.getY();
 		
+		fly.update(6);
 	}
 
 	@Override

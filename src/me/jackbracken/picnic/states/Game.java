@@ -17,7 +17,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Game extends BasicGameState {
-	private int id, xPos, yPos;
+	private int id, xPos, yPos, height;
 	private Image bg, swatter;
 	private Animation flyAnimation, beeAnimation, playerAnimation;
 	private Entity entity;
@@ -36,6 +36,7 @@ public class Game extends BasicGameState {
 			throws SlickException {
 		mobs = new ArrayList<Entity>();
 		bg = new Image("res/bg.png");
+		height = gc.getHeight();
 		
 		// Initialize sprites
 		
@@ -59,20 +60,23 @@ public class Game extends BasicGameState {
 		beeAnimation = new Animation(beeSprite, 100, false);
 		playerAnimation = new Animation(playerSprite, 100, false);
 		
-		fly = new FlyEntity(this, flyAnimation);
-		player = new PlayerEntity(this, playerAnimation);
+		fly = new FlyEntity(this, flyAnimation, 300, 300);
 		
 		// Initialize mouse 
 		
 		xPos = Mouse.getX();
-		yPos = gc.getHeight() - Mouse.getY();
+		yPos = height - Mouse.getY();
+		
+		player = new PlayerEntity(this, playerAnimation, xPos, yPos, height);
+		
+
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		g.drawImage(bg, 0, 0);
-		player.render(xPos, yPos);
+		player.render();
 		
 		fly.render();
 //		flyAnimation.draw(500, 300);
@@ -81,9 +85,11 @@ public class Game extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		xPos = Mouse.getX();
-		yPos = gc.getHeight() - Mouse.getY();
 		
+		if(fly.isCollidingWith(player)) {
+			fly.kill();
+		}
+		player.update(delta);
 		fly.update(6);
 	}
 
@@ -93,7 +99,7 @@ public class Game extends BasicGameState {
 	}
 	
 	public void spawnFly(FlyEntity fly) {
-		fly = new FlyEntity(this, flyAnimation);
+//		fly = new FlyEntity(this, flyAnimation);
 		spawnEntity(fly);
 	}
 	

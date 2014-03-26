@@ -9,18 +9,23 @@ import org.newdawn.slick.Animation;
 public class FlyEntity extends Entity {
 	
 	private Game game;
+	private int x, y;
 	Random r = new Random();
 	boolean alive = true;
 	
-	public FlyEntity(Game game, Animation animation) {
-		super(animation, 0, 0);
+	public FlyEntity(Game game, Animation animation, int x, int y) {
+		super(animation, x, y);
 		this.game = game;
+		this.x = x;
+		this.y = y;
 	}
 	
 	public void update(long delta) {
 		animation.update(delta);
-		
-		
+	}
+	
+	public void kill() {
+		alive = false;
 	}
 	
 	public void render() {

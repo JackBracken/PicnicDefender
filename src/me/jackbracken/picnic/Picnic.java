@@ -31,7 +31,7 @@ public class Picnic extends StateBasedGame {
     }
     
     public void initStatesList(GameContainer container) throws SlickException {
-    	//addState(new SplashScreen(State.SplashScreen));
+//    	addState(new SplashScreen(State.SplashScreen));
     	addState(new Game(State.Game));
     	addState(new Game(State.Scoreboard));
     	addState(new PauseMenu(State.PauseMenu));
@@ -44,9 +44,8 @@ public class Picnic extends StateBasedGame {
 			container.setDisplayMode(WIDTH, HEIGHT, false);
 			container.setTargetFrameRate(TARGET_FPS);
 			Music backgroundMusic = new Music("res/audio/bee.ogg");
-			SoundStore.get().setMusicVolume(0.01f);
-			//backgroundMusic.play();
-			//backgroundMusic.loop();
+			backgroundMusic.play();
+			backgroundMusic.loop();
 			container.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

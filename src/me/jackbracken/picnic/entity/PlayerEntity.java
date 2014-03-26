@@ -11,18 +11,28 @@ import org.newdawn.slick.Animation;
 public class PlayerEntity extends Entity {
 
 	private Game game;
+	private int x, y, gameHeight;
 	Random r = new Random();
 	
-	public PlayerEntity(Game game, Animation animation) {
-		super(animation, 0, 0);
+	public PlayerEntity(Game game, Animation animation, int x, int y, int gameHeight) {
+		super(animation, x, y);
 		this.game = game;
+		this.x = x;
+		this.y = y;
+		this.gameHeight = gameHeight;
 	}
 	
 	public void update(long delta) {
 		animation.update(delta);
+		
+		x = Mouse.getX();
+		y = gameHeight - Mouse.getY();
+	
+		setX(x);
+		setY(y);
 	}
 	
-	public void render(int x, int y) {
+	public void render() {
 		animation.draw(x, y);
 	}
 

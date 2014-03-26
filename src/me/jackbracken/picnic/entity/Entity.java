@@ -32,6 +32,14 @@ public abstract class Entity {
 		return (int) y;
 	}
 	
+	public void setX(int i) {
+		x = i;
+	}
+	
+	public void setY(int i) {
+		y = i;
+	}
+	
 	public float getHorizontalVelocity() {
 		return xVel;
 	}

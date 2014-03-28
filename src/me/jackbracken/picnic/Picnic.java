@@ -7,6 +7,7 @@ import me.jackbracken.picnic.states.PauseMenu;
 import me.jackbracken.picnic.states.SplashScreen;
 import me.jackbracken.picnic.states.State;
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Music;
@@ -31,7 +32,7 @@ public class Picnic extends StateBasedGame {
     }
     
     public void initStatesList(GameContainer container) throws SlickException {
-//    	addState(new SplashScreen(State.SplashScreen));
+    	addState(new SplashScreen(State.SplashScreen));
     	addState(new Game(State.Game));
     	addState(new Game(State.Scoreboard));
     	addState(new PauseMenu(State.PauseMenu));

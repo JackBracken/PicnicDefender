@@ -34,6 +34,10 @@ public class Game extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		
+		// Capture mouse
+		Mouse.setGrabbed(true);
+		
 		mobs = new ArrayList<Entity>();
 		bg = new Image("res/bg.png");
 		height = gc.getHeight();
@@ -87,7 +91,7 @@ public class Game extends BasicGameState {
 			throws SlickException {
 		
 		if(fly.isCollidingWith(player)) {
-			fly.kill();
+			fly.kill(); 
 		}
 		player.update(delta);
 		fly.update(6);

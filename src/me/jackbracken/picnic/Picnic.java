@@ -7,12 +7,10 @@ import me.jackbracken.picnic.states.PauseMenu;
 import me.jackbracken.picnic.states.SplashScreen;
 import me.jackbracken.picnic.states.State;
 
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Picnic extends StateBasedGame {

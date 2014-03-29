@@ -1,6 +1,6 @@
 package me.jackbracken.picnic.states;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 import me.jackbracken.picnic.entity.BeeEntity;
 import me.jackbracken.picnic.entity.Entity;
@@ -18,14 +18,10 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Game extends BasicGameState {
 	private int id, xPos, yPos, height, width;
-	private Image bg, swatter;
+	private Image bg;
 	private Animation flyAnimation, beeAnimation, playerAnimation;
-	private Entity entity;
-	private FlyEntity fly;
-	private BeeEntity bee;
 	private PlayerEntity player;
-	
-	private ArrayList<Entity> mobs;
+	private Vector<Entity> mobs;
 	
 	public Game(State state) {
 		id = state.getId();
@@ -38,7 +34,7 @@ public class Game extends BasicGameState {
 		// Capture mouse
 		Mouse.setGrabbed(true);
 		
-		mobs = new ArrayList<Entity>();
+		mobs = new Vector<Entity>();
 		bg = new Image("res/bg.png");
 		height = gc.getHeight();
 		width = gc.getWidth();
@@ -65,14 +61,12 @@ public class Game extends BasicGameState {
 		beeAnimation = new Animation(beeSprite, 100, false);
 		playerAnimation = new Animation(playerSprite, 100, false);
 		
-		fly = new FlyEntity(this, flyAnimation, width, 300);
-		
 		// Initialize mouse 
 		
 		xPos = Mouse.getX();
 		yPos = height - Mouse.getY();
 		
-		player = new PlayerEntity(this, playerAnimation, xPos, yPos, height);
+		player = new PlayerEntity(playerAnimation, xPos, yPos, height);
 		
 
 	}
@@ -82,8 +76,10 @@ public class Game extends BasicGameState {
 			throws SlickException {
 		g.drawImage(bg, 0, 0);
 		player.render();
-		
-		fly.render();
+		for(Entity mob: mobs) {
+			mob.render();
+		}
+//		fly.render();
 //		flyAnimation.draw(500, 300);
 	}
 
@@ -91,34 +87,37 @@ public class Game extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		
-		if(fly.isCollidingWith(player)) {
-			fly.kill(); 
-		}
 		player.update(delta);
-		fly.update(6);
+		
+		if(mobs.isEmpty()) {
+			mobs.add(new FlyEntity(flyAnimation, width, 500));
+		}
+		
+		for(Entity mob: mobs) {
+			mob.update(delta);
+			if(mob.isCollidingWith(player) || mob.getX() < 0) {
+//				mob.kill();
+				mobs.remove(mob);
+				break;
+			}
+		}
 	}
 
 	@Override
 	public int getID() {
 		return id;
 	}
-	
+	// are these spawn methods needed? Maybe cleaup update code usign them
 	public void spawnFly(FlyEntity fly) {
-//		fly = new FlyEntity(this, flyAnimation);
 		spawnEntity(fly);
 	}
 	
 	public void spawnBee(BeeEntity bee) {
-		bee = new BeeEntity(this, beeAnimation);
 		spawnEntity(bee);
 	}
 	
 	public void spawnEntity(Entity e) {
 		mobs.add(e);
-	}
-	
-	public void destroyEntity(Entity e) {
-		mobs.remove(e);
 	}
 	
 }

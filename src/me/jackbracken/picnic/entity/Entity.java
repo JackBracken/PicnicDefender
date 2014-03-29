@@ -22,6 +22,18 @@ public abstract class Entity {
 		y += (delta * yVel) / 1000;
 	}
 	
+	public void render() {
+		
+	}
+	
+	public void kill() {
+		
+	}
+	
+	public void update(long delta) {
+		
+	}
+	
 	// Set and get coordinates and velocities
 	
 	public int getX() {

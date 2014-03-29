@@ -3,20 +3,16 @@ package me.jackbracken.picnic.entity;
 
 import java.util.Random;
 
-import me.jackbracken.picnic.states.Game;
-
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Animation;
 
 public class PlayerEntity extends Entity {
 
-	private Game game;
 	private int x, y, gameHeight;
 	Random r = new Random();
 	
-	public PlayerEntity(Game game, Animation animation, int x, int y, int gameHeight) {
+	public PlayerEntity(Animation animation, int x, int y, int gameHeight) {
 		super(animation, x, y);
-		this.game = game;
 		this.x = x;
 		this.y = y;
 		this.gameHeight = gameHeight;

@@ -9,11 +9,4 @@ public class BeeEntity extends Entity {
 		super(animation, 0, 0);
 	}
 
-	@Override
-	public void collidedWith(Entity other) {
-		if(other instanceof PlayerEntity) {
-			// see flyentity
-		}
-	}
-
 }

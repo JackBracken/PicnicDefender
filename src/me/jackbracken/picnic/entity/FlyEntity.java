@@ -22,7 +22,6 @@ public class FlyEntity extends Entity {
 	public void update(long delta) {
 		move(delta / 2);
 		setVerticalVelocity(getVerticalVelocity() + r.nextInt(50) - 25);
-//		System.out.println(r.nextInt(100));
 		
 		x = getX();
 		y = getY(); 
@@ -30,20 +29,10 @@ public class FlyEntity extends Entity {
 		animation.update(delta);
 	}
 	
-	public void kill() {
-		alive = false;
-	}
 	
 	public void render() {
 		if(alive) {
 			animation.draw(x, y);
-		}
-	}
-
-	public void collidedWith(Entity other) {
-		// move to superclass
-		if(other instanceof PlayerEntity) {
-			alive = false;
 		}
 	}
 

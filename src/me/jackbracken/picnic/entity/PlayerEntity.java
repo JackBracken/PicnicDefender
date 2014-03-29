@@ -32,15 +32,4 @@ public class PlayerEntity extends Entity {
 		animation.draw(x, y);
 	}
 
-	
-//	protected PlayerEntity(Animation animation, int x, int y) {
-//		super(animation, x, y);
-//	}
-
-	@Override
-	public void collidedWith(Entity other) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

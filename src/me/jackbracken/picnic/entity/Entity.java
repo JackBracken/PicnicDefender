@@ -79,5 +79,4 @@ public abstract class Entity {
 		return thisEntity.intersects(thatEntity);
 	}
 	
-	public abstract void collidedWith(Entity other);
 }

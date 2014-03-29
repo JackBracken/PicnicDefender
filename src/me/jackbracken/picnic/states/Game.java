@@ -96,7 +96,6 @@ public class Game extends BasicGameState {
 		for(Entity mob: mobs) {
 			mob.update(delta);
 			if(mob.isCollidingWith(player) || mob.getX() < 0) {
-//				mob.kill();
 				mobs.remove(mob);
 				break;
 			}

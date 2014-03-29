@@ -32,7 +32,7 @@ public class Picnic extends StateBasedGame {
     }
     
     public void initStatesList(GameContainer container) throws SlickException {
-    	addState(new SplashScreen(State.SplashScreen));
+//    	addState(new SplashScreen(State.SplashScreen));
     	addState(new Game(State.Game));
     	addState(new Game(State.Scoreboard));
     	addState(new PauseMenu(State.PauseMenu));

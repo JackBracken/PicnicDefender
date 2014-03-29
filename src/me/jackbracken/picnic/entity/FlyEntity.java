@@ -18,9 +18,18 @@ public class FlyEntity extends Entity {
 		this.game = game;
 		this.x = x;
 		this.y = y;
+		
+		setHorizontalVelocity(-500);
 	}
 	
 	public void update(long delta) {
+		move(delta);
+		setVerticalVelocity(r.nextInt(2000) - 1000);
+//		System.out.println(r.nextInt(100));
+		
+		x = getX();
+		y = getY(); 
+		
 		animation.update(delta);
 	}
 	
@@ -30,7 +39,7 @@ public class FlyEntity extends Entity {
 	
 	public void render() {
 		if(alive) {
-			animation.draw(300, 300);
+			animation.draw(x, y);
 		}
 	}
 

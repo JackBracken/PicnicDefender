@@ -17,7 +17,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Game extends BasicGameState {
-	private int id, xPos, yPos, height;
+	private int id, xPos, yPos, height, width;
 	private Image bg, swatter;
 	private Animation flyAnimation, beeAnimation, playerAnimation;
 	private Entity entity;
@@ -41,6 +41,7 @@ public class Game extends BasicGameState {
 		mobs = new ArrayList<Entity>();
 		bg = new Image("res/bg.png");
 		height = gc.getHeight();
+		width = gc.getWidth();
 		
 		// Initialize sprites
 		
@@ -64,7 +65,7 @@ public class Game extends BasicGameState {
 		beeAnimation = new Animation(beeSprite, 100, false);
 		playerAnimation = new Animation(playerSprite, 100, false);
 		
-		fly = new FlyEntity(this, flyAnimation, 300, 300);
+		fly = new FlyEntity(this, flyAnimation, width, 300);
 		
 		// Initialize mouse 
 		

@@ -1,5 +1,6 @@
 package me.jackbracken.picnic.states;
 
+import java.util.Random;
 import java.util.Vector;
 
 import me.jackbracken.picnic.entity.BeeEntity;
@@ -22,6 +23,7 @@ public class Game extends BasicGameState {
 	private Animation flyAnimation, beeAnimation, playerAnimation;
 	private PlayerEntity player;
 	private Vector<Entity> mobs;
+	private Random rand;
 	
 	public Game(State state) {
 		id = state.getId();
@@ -79,8 +81,7 @@ public class Game extends BasicGameState {
 		for(Entity mob: mobs) {
 			mob.render();
 		}
-//		fly.render();
-//		flyAnimation.draw(500, 300);
+
 	}
 
 	@Override
@@ -90,7 +91,9 @@ public class Game extends BasicGameState {
 		player.update(delta);
 		
 		if(mobs.isEmpty()) {
-			mobs.add(new FlyEntity(flyAnimation, width, 500));
+			rand = new Random();
+			int i = rand.nextInt(height);
+			mobs.add(new FlyEntity(flyAnimation, width, i));
 		}
 		
 		for(Entity mob: mobs) {

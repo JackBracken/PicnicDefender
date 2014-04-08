@@ -6,6 +6,7 @@ import java.util.Vector;
 import me.jackbracken.picnic.entity.BeeEntity;
 import me.jackbracken.picnic.entity.Entity;
 import me.jackbracken.picnic.entity.FlyEntity;
+import me.jackbracken.picnic.entity.HUD;
 import me.jackbracken.picnic.entity.PlayerEntity;
 
 import org.lwjgl.input.Mouse;
@@ -18,12 +19,13 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Game extends BasicGameState {
-	private int id, xPos, yPos, height, width;
+	private int id, xPos, yPos, height, width, score, spawnHeight, randSpawnType;
 	private Image bg;
 	private Animation flyAnimation, beeAnimation, playerAnimation;
 	private PlayerEntity player;
 	private Vector<Entity> mobs;
 	private Random rand;
+	private HUD hud;
 	
 	public Game(State state) {
 		id = state.getId();
@@ -40,9 +42,13 @@ public class Game extends BasicGameState {
 		bg = new Image("res/bg.png");
 		height = gc.getHeight();
 		width = gc.getWidth();
+		score = 0;
+		rand = new Random();
+		
+		// Initialize HUD
+		hud = new HUD(gc);
 		
 		// Initialize sprites
-		
 		Image[] flySprite = { 
 			new Image("res/sprites/fly_1.png"),
 			new Image("res/sprites/fly_2.png") 
@@ -58,26 +64,31 @@ public class Game extends BasicGameState {
 		};
 		
 		// Initialize animations
-		
 		flyAnimation = new Animation(flySprite, 100, false);
 		beeAnimation = new Animation(beeSprite, 100, false);
 		playerAnimation = new Animation(playerSprite, 100, false);
 		
 		// Initialize mouse 
-		
 		xPos = Mouse.getX();
 		yPos = height - Mouse.getY();
 		
 		player = new PlayerEntity(playerAnimation, xPos, yPos, height);
-		
 
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		// Render BG image
 		g.drawImage(bg, 0, 0);
+		
+		// Render HUD
+		hud.render(gc, g);
+		
+		// Render player entity
 		player.render();
+		
+		// Render mobs
 		for(Entity mob: mobs) {
 			mob.render();
 		}
@@ -91,35 +102,48 @@ public class Game extends BasicGameState {
 		player.update(delta);
 		
 		if(mobs.isEmpty()) {
-			rand = new Random();
-			int i = rand.nextInt(height);
-			mobs.add(new FlyEntity(flyAnimation, width, i));
+			mobs.add(spawnMob());
 		}
 		
 		for(Entity mob: mobs) {
 			mob.update(delta);
+			
+			if(mob.isCollidingWith(player)) {
+				score += mob.getScore();
+			}
+			
 			if(mob.isCollidingWith(player) || mob.getX() < 0) {
 				mobs.remove(mob);
 				break;
 			}
 		}
+		
+		hud.update(gc, delta, score);
 	}
 
-	@Override
 	public int getID() {
 		return id;
 	}
-	// are these spawn methods needed? Maybe cleaup update code usign them
-	public void spawnFly(FlyEntity fly) {
-		spawnEntity(fly);
+	
+	// Spawn a random mob
+	public Entity spawnMob() {
+		randSpawnType = rand.nextInt(20);
+
+		if(randSpawnType < 19) {
+			return spawnFly();
+		} else {
+			return spawnBee();
+		}
 	}
 	
-	public void spawnBee(BeeEntity bee) {
-		spawnEntity(bee);
+	public Entity spawnFly() {
+		spawnHeight = rand.nextInt(height);
+		return new FlyEntity(flyAnimation, width, spawnHeight);
 	}
 	
-	public void spawnEntity(Entity e) {
-		mobs.add(e);
+	public Entity spawnBee() {
+		spawnHeight = rand.nextInt(height);
+		return new BeeEntity(beeAnimation, width, spawnHeight);
 	}
 	
 }

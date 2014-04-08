@@ -6,25 +6,27 @@ import org.newdawn.slick.Animation;
 
 public class FlyEntity extends Entity {
 	
-//	private Game game;
+	private static int SCORE = 1;
+	
 	private int x, y;
-	Random r = new Random();
 	boolean alive = true;
+	
+	Random r = new Random();
 	
 	public FlyEntity(Animation animation, int x, int y) {
 		super(animation, x, y);
 		this.x = x;
 		this.y = y;
-		
 		setHorizontalVelocity(-500);
 	}
 	
 	public void update(long delta) {
 		move(delta / 2);
-		setVerticalVelocity(getVerticalVelocity() + r.nextInt(50) - 25);
 		
+		setVerticalVelocity(getVerticalVelocity() + r.nextInt(50) - 25);
+
 		x = getX();
-		y = getY(); 
+		y = getY();
 		
 		animation.update(delta);
 	}
@@ -34,6 +36,10 @@ public class FlyEntity extends Entity {
 		if(alive) {
 			animation.draw(x, y);
 		}
+	}
+	
+	public int getScore() {
+		return SCORE;
 	}
 
 }

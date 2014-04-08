@@ -11,6 +11,11 @@ public abstract class Entity {
 	protected Rectangle thisEntity = new Rectangle();
 	protected Rectangle thatEntity = new Rectangle();
 
+	protected Entity(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
 	protected Entity(Animation animation, int x, int y) {
 		this.animation = animation;
 		this.x = x;
@@ -77,6 +82,10 @@ public abstract class Entity {
 		thisEntity.setBounds((int) x, (int) y, animation.getWidth(), animation.getHeight());
 		thatEntity.setBounds((int) other.getX(), (int) other.getY(), other.animation.getWidth(), other.animation.getHeight());
 		return thisEntity.intersects(thatEntity);
+	}
+
+	public int getScore() {
+		return 0;
 	}
 	
 }

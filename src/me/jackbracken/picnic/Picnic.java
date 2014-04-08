@@ -15,7 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Picnic extends StateBasedGame {
 	// Game title
-	public static final String TITLE = "Picnic Defender";
+	public static final String TITLE = "Picnic Protector";
     
 	public static State currentState = State.SplashScreen;
     
@@ -30,7 +30,7 @@ public class Picnic extends StateBasedGame {
     }
     
     public void initStatesList(GameContainer container) throws SlickException {
-//    	addState(new SplashScreen(State.SplashScreen));
+    	addState(new SplashScreen(State.SplashScreen));
     	addState(new Game(State.Game));
     	addState(new Game(State.Scoreboard));
     	addState(new PauseMenu(State.PauseMenu));
@@ -46,6 +46,7 @@ public class Picnic extends StateBasedGame {
 			backgroundMusic.play();
 			backgroundMusic.loop();
 			container.start();
+			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

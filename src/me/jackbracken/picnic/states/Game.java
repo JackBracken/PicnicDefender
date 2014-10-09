@@ -38,12 +38,12 @@ public class Game extends BasicGameState {
 		// Capture mouse
 		Mouse.setGrabbed(true);
 		
-		mobs = new Vector<Entity>();
-		bg = new Image("res/bg.png");
+		mobs   = new Vector<Entity>();
+		bg     = new Image("res/bg.png");
 		height = gc.getHeight();
-		width = gc.getWidth();
-		score = 0;
-		rand = new Random();
+		width  = gc.getWidth();
+		score  = 0;
+		rand   = new Random();
 		
 		// Initialize HUD
 		hud = new HUD(gc);
@@ -129,7 +129,7 @@ public class Game extends BasicGameState {
 	public Entity spawnMob() {
 		randSpawnType = rand.nextInt(20);
 
-		if(randSpawnType < 19) {
+		if(randSpawnType < 18) {
 			return spawnFly();
 		} else {
 			return spawnBee();
@@ -137,12 +137,12 @@ public class Game extends BasicGameState {
 	}
 	
 	public Entity spawnFly() {
-		spawnHeight = rand.nextInt(height);
+		spawnHeight = rand.nextInt(height - 200);
 		return new FlyEntity(flyAnimation, width, spawnHeight);
 	}
 	
 	public Entity spawnBee() {
-		spawnHeight = rand.nextInt(height);
+		spawnHeight = rand.nextInt(height - 200);
 		return new BeeEntity(beeAnimation, width, spawnHeight);
 	}
 	

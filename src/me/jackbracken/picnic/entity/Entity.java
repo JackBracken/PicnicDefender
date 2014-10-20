@@ -81,11 +81,22 @@ public abstract class Entity {
 	public boolean isCollidingWith(Entity other) {
 		thisEntity.setBounds((int) x, (int) y, animation.getWidth(), animation.getHeight());
 		thatEntity.setBounds((int) other.getX(), (int) other.getY(), other.animation.getWidth(), other.animation.getHeight());
-		return thisEntity.intersects(thatEntity);
+		
+		if(other.isCollidable() && isCollidable() ) {
+			return thisEntity.intersects(thatEntity);
+		} else {
+			return false;
+		}
+		
+		
 	}
 
 	public int getScore() {
 		return 0;
+	}
+	
+	public boolean isCollidable() {
+		return true;
 	}
 	
 }

@@ -6,7 +6,7 @@ import org.newdawn.slick.Animation;
 
 public class BeeEntity extends Entity {
 
-	private static int SCORE = 5;
+	private static int SCORE = 3;
 	
 	private int x, y;
 	boolean alive = true;
@@ -23,7 +23,8 @@ public class BeeEntity extends Entity {
 	public void update(long delta) {
 		move(delta / 2);
 		
-		setVerticalVelocity(getVerticalVelocity() + r.nextInt(50) - 25);
+		// sine-wave like motion for flies
+		setVerticalVelocity(getVerticalVelocity() + (float) Math.cos(getX() / 60) * 15);
 
 		x = getX();
 		y = getY();

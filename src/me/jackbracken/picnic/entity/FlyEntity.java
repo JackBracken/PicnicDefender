@@ -22,9 +22,6 @@ public class FlyEntity extends Entity {
 	
 	public void update(long delta) {
 		move(delta / 2);
-		
-		// sine-wave like motion for flies
-		setVerticalVelocity(getVerticalVelocity() + (float) Math.cos(getX() / 60) * 15);
 
 		x = getX();
 		y = getY();

@@ -21,7 +21,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Game extends BasicGameState {
 	private int id, xPos, yPos, height, width, score, spawnHeight, randSpawnType;
 	private Image bg;
-	private Animation flyAnimation, beeAnimation, playerAnimation;
+	private Animation flyAnimation, beeAnimation, swatterAnimation;
 	private PlayerEntity player;
 	private Vector<Entity> mobs;
 	private Random rand;
@@ -59,20 +59,37 @@ public class Game extends BasicGameState {
 			new Image("res/sprites/bee_2.png")
 		};
 		
-		Image[] playerSprite = {
-			new Image("res/sprites/swatter.png")
+		Image[] swatterSprite = {
+			new Image("res/sprites/s1.png"),
+			new Image("res/sprites/s2.png"),
+			new Image("res/sprites/s3.png"),
+			new Image("res/sprites/s4.png"),
+			new Image("res/sprites/s5.png"),
+			new Image("res/sprites/s6.png"),
+			new Image("res/sprites/s7.png"),
+			new Image("res/sprites/s8.png"),
+			new Image("res/sprites/s9.png"),
+			new Image("res/sprites/s10.png"),
+			new Image("res/sprites/s9.png"),
+			new Image("res/sprites/s8.png"),
+			new Image("res/sprites/s7.png"),
+			new Image("res/sprites/s6.png"),
+			new Image("res/sprites/s5.png"),
+			new Image("res/sprites/s4.png"),
+			new Image("res/sprites/s3.png"),
+			new Image("res/sprites/s2.png")
 		};
 		
 		// Initialize animations
 		flyAnimation = new Animation(flySprite, 100, false);
 		beeAnimation = new Animation(beeSprite, 100, false);
-		playerAnimation = new Animation(playerSprite, 100, false);
+		swatterAnimation = new Animation(swatterSprite, 100, false);
 		
 		// Initialize mouse 
 		xPos = Mouse.getX();
 		yPos = height - Mouse.getY();
 		
-		player = new PlayerEntity(playerAnimation, xPos, yPos, height);
+		player = new PlayerEntity(swatterAnimation, xPos, yPos, height);
 
 	}
 
@@ -98,7 +115,7 @@ public class Game extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		
+		boolean swatterIdle = true;
 		player.update(delta);
 		
 		if(mobs.isEmpty()) {
@@ -116,6 +133,10 @@ public class Game extends BasicGameState {
 				mobs.remove(mob);
 				break;
 			}
+		}
+		
+		if(Mouse.isButtonDown(0) && swatterIdle) {
+			player.swat();
 		}
 		
 		hud.update(gc, delta, score);
@@ -137,12 +158,12 @@ public class Game extends BasicGameState {
 	}
 	
 	public Entity spawnFly() {
-		spawnHeight = rand.nextInt(height - 200);
+		spawnHeight = rand.nextInt(height - (flyAnimation.getHeight() * 2));
 		return new FlyEntity(flyAnimation, width, spawnHeight);
 	}
 	
 	public Entity spawnBee() {
-		spawnHeight = rand.nextInt(height - 200);
+		spawnHeight = rand.nextInt(height - (beeAnimation.getHeight() * 2));
 		return new BeeEntity(beeAnimation, width, spawnHeight);
 	}
 	

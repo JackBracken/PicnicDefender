@@ -83,7 +83,7 @@ public class Game extends BasicGameState {
 		// Initialize animations
 		flyAnimation = new Animation(flySprite, 100, false);
 		beeAnimation = new Animation(beeSprite, 100, false);
-		swatterAnimation = new Animation(swatterSprite, 100, false);
+		swatterAnimation = new Animation(swatterSprite, 50, false);
 		
 		// Initialize mouse 
 		xPos = Mouse.getX();

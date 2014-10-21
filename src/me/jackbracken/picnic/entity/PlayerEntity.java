@@ -32,6 +32,11 @@ public class PlayerEntity extends Entity {
 		x = 100;
 		y = gameHeight - Mouse.getY();
 	
+		if(y > gameHeight - animation.getHeight()) {
+			y = gameHeight - animation.getHeight();
+			Mouse.setCursorPosition(x, animation.getHeight());
+		}
+	
 		setX(x);
 		setY(y);
 	}

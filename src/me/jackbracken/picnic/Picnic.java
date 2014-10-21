@@ -42,9 +42,9 @@ public class Picnic extends StateBasedGame {
 			AppGameContainer container = new AppGameContainer(new Picnic());
 			container.setDisplayMode(WIDTH, HEIGHT, false);
 			container.setTargetFrameRate(TARGET_FPS);
-			//Music backgroundMusic = new Music("res/audio/bee.ogg");
-			//backgroundMusic.play();
-			//backgroundMusic.loop();
+			Music backgroundMusic = new Music("res/audio/bee.ogg");
+			backgroundMusic.play();
+			backgroundMusic.loop();
 			container.start();
 			
 		} catch (SlickException e) {

@@ -86,9 +86,7 @@ public abstract class Entity {
 			return thisEntity.intersects(thatEntity);
 		} else {
 			return false;
-		}
-		
-		
+		}	
 	}
 
 	public int getScore() {

@@ -21,7 +21,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Game extends BasicGameState {
 	private int id, xPos, yPos, height, width, score, spawnHeight, randSpawnType;
 	private Image bg;
-	private Animation flyAnimation, beeAnimation, swatterAnimation;
+	private Animation flyAnimation, beeAnimation, swatterAnimation, basketAnimation;
 	private PlayerEntity player;
 	private Vector<Entity> mobs;
 	private Random rand;
@@ -39,7 +39,7 @@ public class Game extends BasicGameState {
 		Mouse.setGrabbed(true);
 		
 		mobs   = new Vector<Entity>();
-		bg     = new Image("res/bg.png");
+		bg     = new Image("res/bggame.png");
 		height = gc.getHeight();
 		width  = gc.getWidth();
 		score  = 0;
@@ -51,7 +51,7 @@ public class Game extends BasicGameState {
 		// Initialize sprites
 		Image[] flySprite = { 
 			new Image("res/sprites/fly_1.png"),
-			new Image("res/sprites/fly_2.png") 
+			new Image("res/sprites/fly_2.png")
 		};
 		
 		Image[] beeSprite = {
@@ -59,34 +59,30 @@ public class Game extends BasicGameState {
 			new Image("res/sprites/bee_2.png")
 		};
 		
-		Image[] swatterSprite = {
-			new Image("res/sprites/s1.png"),
-			new Image("res/sprites/s2.png"),
-			new Image("res/sprites/s3.png"),
-			new Image("res/sprites/s4.png"),
-			new Image("res/sprites/s5.png"),
-			new Image("res/sprites/s6.png"),
-			new Image("res/sprites/s7.png"),
-			new Image("res/sprites/s8.png"),
-			new Image("res/sprites/s9.png"),
-			new Image("res/sprites/s10.png"),
-			new Image("res/sprites/s9.png"),
-			new Image("res/sprites/s8.png"),
-			new Image("res/sprites/s7.png"),
-			new Image("res/sprites/s6.png"),
-			new Image("res/sprites/s5.png"),
-			new Image("res/sprites/s4.png"),
-			new Image("res/sprites/s3.png"),
-			new Image("res/sprites/s2.png")
+		Image[] playerSprite = {
+			new Image("res/sprites/pc1.png"),
+			new Image("res/sprites/pc2.png"),
+			new Image("res/sprites/pc3.png"),
+			new Image("res/sprites/pc4.png"),
+			new Image("res/sprites/pc5.png"),
+			new Image("res/sprites/pc6.png"),
+			new Image("res/sprites/pc7.png"),
+			new Image("res/sprites/pc6.png"),
+			new Image("res/sprites/pc5.png"),
+			new Image("res/sprites/pc4.png"),
+			new Image("res/sprites/pc3.png"),
+			new Image("res/sprites/pc2.png")
 		};
+		
 		
 		// Initialize animations
 		flyAnimation = new Animation(flySprite, 100, false);
 		beeAnimation = new Animation(beeSprite, 100, false);
-		swatterAnimation = new Animation(swatterSprite, 50, false);
+		swatterAnimation = new Animation(playerSprite, 50, false);
+		
 		
 		// Initialize mouse 
-		xPos = Mouse.getX();
+		xPos = 240;
 		yPos = height - Mouse.getY();
 		
 		player = new PlayerEntity(swatterAnimation, xPos, yPos, height);

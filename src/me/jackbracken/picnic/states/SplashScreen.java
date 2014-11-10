@@ -63,7 +63,7 @@ public class SplashScreen extends BasicGameState {
 		menuReadyTime = 3000;
 
 		// Initialize background image (need 2 for horizontal repeat)
-		backgroundImage = new Image("res/menu/bg.png");
+		backgroundImage = new Image("res/bgmenu.png");
 
 		backgroundWidth = backgroundImage.getWidth();
 		hOffset = -backgroundWidth + gc.getWidth();

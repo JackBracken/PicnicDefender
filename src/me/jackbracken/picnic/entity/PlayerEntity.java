@@ -22,14 +22,13 @@ public class PlayerEntity extends Entity {
 	
 	public void update(long delta) {
 		if(isSwatting) {
-			animation.update(delta * 2);
+			animation.update(delta);
 			
 			if(animation.getFrameCount() - 1 == animation.getFrame()) {
 				stopSwat();
 			}
 		}
 
-		x = 100;
 		y = gameHeight - Mouse.getY();
 	
 		if(y > gameHeight - animation.getHeight()) {
@@ -37,7 +36,7 @@ public class PlayerEntity extends Entity {
 			Mouse.setCursorPosition(x, animation.getHeight());
 		}
 	
-		setX(x);
+//		setX(x);
 		setY(y);
 	}
 	
@@ -54,12 +53,7 @@ public class PlayerEntity extends Entity {
 	}
 	
 	public boolean isCollidable() {
-		
-		if(animation.getFrameCount() / 2  == animation.getFrame()) {
-			return true;
-		} else {
-			return false;
-		}
+		return animation.getFrameCount() / 2  == animation.getFrame();
 	}
 
 }
